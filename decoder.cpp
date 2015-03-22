@@ -214,8 +214,11 @@ struct decoder
 //create instance of decoder
 decoder * create_decoder( data_type dt)
 {
+    using namespace std;
+    if (dt != dt_text)
+        throw logic_error(string("Only text decoding implemented") + LOCATION);
 	if(!g_initialized)
-		throw std::logic_error(std::string("Not initialized")+LOCATION);
+        throw logic_error(string("Not initialized")+LOCATION);
 
 	decoder_impl *pDecoderImpl = new decoder_impl;
 

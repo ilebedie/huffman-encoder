@@ -17,9 +17,9 @@ public:
     {
         huffmanator::close_decoder(m_dec);
     }
-    void decode(std::string text)
+    std::string decode(std::string text)
     {
-        huffmanator::decode_text(m_dec, text);
+        return huffmanator::decode_text(m_dec, text);
     }
 };
 
@@ -37,7 +37,11 @@ void DecodeTextFile(std::string in_file_path, std::string out_file_path)
     }
 
     dec_handler dec;
-    dec.decode(text);
+    string enc_data = dec.decode(text);
+
+    ofstream out(out_file_path.c_str());
+    out.write(enc_data.c_str(), enc_data.size());
+
 }
 
 int main(int ac, char ** av)
